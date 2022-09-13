@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
 
+
 @import url("animations.css");
 
 body {
@@ -44,13 +45,17 @@ span {
 	z-index: 2;
 }
 
-p {
-	font-size: 21px;
-	color: #995d31;
-	width: 40%;
+.SA {
+	font-size: 130px;
+	/* color: #492a17;
+	text-shadow: 5px 5px 20px #ffffff; */
+	color: black;
+	text-shadow: 5px 5px 20px #860606;
+	width: 50%;
 	text-align: justify;
 	position: relative;
 	left: 50%;
+	font-family: "Megrim", cursive;
 }
 
 .headerImage {

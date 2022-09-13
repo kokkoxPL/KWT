@@ -4,23 +4,34 @@ const Email = require("./formModel");
 const validator = require('validator');
 
 const data = require("./temporary_posts.json");
+const applicants = require("./temporary_applicants.json")
 
 router.get("/test", (req, res) => {
   res.json(data);
 })
 
 router.post("/form", async (req, res) => {
-  const { name, surname, school, email, phone } = req.body;
+  const { name, surname, school, schoolAddress, email, phone } = req.body;
 
-  if (!validator.isEmail(email)) {
-    throw Error('Email is not valid');
-  }
+  console.log(name, surname, email)
 
-  const exists = await Email.findOne({ email });
+  // if (!validator.isEmail(email)) {
+  //   return res.status(404).json({ error: "Email is not valid" });
+  // }
 
-  if (exists) {
-    throw Error('Email already exists');
-  }
+  // const exists = await Email.findOne({ email });
+
+  // if (exists) {
+  // return res.status(404).json({ error: 'Email already exists' });
+  // }
+
+  setTimeout(() => {
+    res.json(data);
+  }, 1000)
+})
+
+router.get("/get_applicants", (req, res) => {
+  res.json(applicants)
 })
 
 module.exports = router

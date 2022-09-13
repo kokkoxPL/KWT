@@ -3,7 +3,9 @@ import Form from "../components/Form";
 const Join = () => {
   return (
     <div className="main">
-      <div className="background"></div>
+      <div className="background">
+        <h1>KWT</h1>
+      </div>
       <Form />
     </div>
   );

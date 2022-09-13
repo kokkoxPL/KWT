@@ -8,14 +8,16 @@ const Home = () => {
         </h1>
       </div>
       <div className="information">
-        <p>
+        {/* <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, est
           nesciunt. Praesentium perferendis sed error doloribus illo, accusamus
           soluta obcaecati a maiores itaque ab neque ullam adipisci, dolores
           quaerat nam tempora repudiandae, ducimus voluptatum id iure?
           Necessitatibus sit consequatur hic laudantium distinctio similique
           expedita molestias libero unde, eius, reprehenderit ad!
-        </p>
+        </p> */}
+
+        <h1 className="SA">SAPERE AUDE</h1>
       </div>
 
       <div className="kwt">

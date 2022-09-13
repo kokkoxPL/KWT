@@ -15,6 +15,10 @@ const formSchema = new Schema({
     type: String,
     required: true
   },
+  schoolAddress: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
