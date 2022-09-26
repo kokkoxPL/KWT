@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const router = Router();
 const Email = require("./formModel");
-const validator = require('validator');
 
 const data = require("./temporary_posts.json");
 const applicants = require("./temporary_applicants.json")
@@ -11,13 +10,9 @@ router.get("/test", (req, res) => {
 })
 
 router.post("/form", async (req, res) => {
-  const { name, surname, school, schoolAddress, email, phone } = req.body;
+  const { name, surname, school, schoolAddress, email, phone, participants } = req.body;
 
-  console.log(name, surname, email)
-
-  // if (!validator.isEmail(email)) {
-  //   return res.status(404).json({ error: "Email is not valid" });
-  // }
+  console.log(name, surname, email, participants)
 
   // const exists = await Email.findOne({ email });
 

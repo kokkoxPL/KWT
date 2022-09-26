@@ -21,11 +21,14 @@ const formSchema = new Schema({
   },
   email: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   phone: {
     type: Number,
+    required: true
+  },
+  participants: {
+    type: Array,
     required: true
   }
 }, { timestamps: true });

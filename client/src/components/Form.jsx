@@ -1,5 +1,65 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+const Participant = ({ participants, setParticipants, number }) => {
+	const [name, setName] = useState("");
+	const [surname, setSurname] = useState("");
+	const [email, setEmail] = useState("");
+
+	useEffect(() => {
+		setParticipants([
+			...participants,
+			{
+				id: number,
+				name: { name },
+				surname: { surname },
+				email: { email },
+			},
+		]);
+	}, []);
+
+	useEffect(() => {
+		setParticipants((obj) =>
+			obj.map((oldData) =>
+				oldData.id === number
+					? {
+							id: number,
+							name: { name },
+							surname: { surname },
+							email: { email },
+					  }
+					: oldData
+			)
+		);
+	}, [name, surname, email]);
+
+	return (
+		<>
+			<input
+				type="text"
+				placeholder="Imię"
+				onChange={(e) => setName(e.target.value)}
+				value={name}
+				required
+			/>
+			<input
+				type="text"
+				placeholder="Nazwisko"
+				onChange={(e) => setSurname(e.target.value)}
+				value={surname}
+				required
+			/>
+			<input
+				type="email"
+				placeholder="E-mail"
+				onChange={(e) => setEmail(e.target.value)}
+				value={email}
+				required
+			/>
+		</>
+	);
+};
 
 const Form = () => {
 	const [name, setName] = useState("");
@@ -8,6 +68,8 @@ const Form = () => {
 	const [schoolAddress, setSchoolAddress] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
+	const [participants, setParticipants] = useState([]);
+	const [participantsNumber, setParticipantsNumber] = useState(1);
 	const [error, setError] = useState(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -16,7 +78,15 @@ const Form = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const data = { name, surname, school, schoolAddress, email, phone };
+		const data = {
+			name,
+			surname,
+			school,
+			schoolAddress,
+			email,
+			phone,
+			participants,
+		};
 		setIsSubmitting(true);
 
 		const response = await fetch("/api/form", {
@@ -42,16 +112,6 @@ const Form = () => {
 		}
 
 		setIsSubmitting(false);
-	};
-
-	const PersonalData = () => {
-		return (
-			<>
-				<input type="text" placeholder="Imię" />
-				<input type="text" placeholder="Nazwisko" />
-				<input type="email" placeholder="E-mail" />
-			</>
-		);
 	};
 
 	return (
@@ -111,9 +171,20 @@ const Form = () => {
 					<h1>UCZNIOWIE</h1>
 					<br />
 					<div className="uczestnicy">
-						{[...Array(5)].map(() => (
-							<PersonalData />
+						{[...Array(participantsNumber)].map((item, index) => (
+							<Participant
+								participants={participants}
+								setParticipants={setParticipants}
+								number={index + 1}
+							/>
 						))}
+						{participantsNumber < 5 && (
+							<div
+								onClick={() => setParticipantsNumber(participantsNumber + 1)}
+							>
+								+
+							</div>
+						)}
 					</div>
 				</div>
 				<input type="submit" value="Zarejestruj" disabled={isSubmitting} />
