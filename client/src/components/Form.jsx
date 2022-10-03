@@ -17,6 +17,7 @@ const Participant = ({ participants, setParticipants, number }) => {
 				email: { email },
 			},
 		]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
@@ -32,6 +33,7 @@ const Participant = ({ participants, setParticipants, number }) => {
 					: oldData
 			)
 		);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [name, surname, email]);
 
 	return (

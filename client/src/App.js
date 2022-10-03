@@ -2,6 +2,8 @@ import "./index.css";
 import "./form.css";
 import "./gallery.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import "./fontello/css/fontello.css";
+// import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
 
 //Pages
 
@@ -14,8 +16,9 @@ import Admin from "./pages/Admin";
 //COMPONENTS
 
 import Navbar from "./components/Navbar";
+import Footer from './components/Footer';
 
-document.title = "KWT";
+document.title = "Konkurs Wiedzy Technicznej";
 
 function App() {
 	return (
@@ -31,6 +34,7 @@ function App() {
 						<Route path="/admin" element={<Admin />} />
 						{/* TODO: 418 page */}
 					</Routes>
+					<Footer />
 				</div>
 			</BrowserRouter >
 		</div>

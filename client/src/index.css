@@ -1,8 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
 
-
 @import url("animations.css");
+@import url("footer.css");
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: orangered;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgb(153, 41, 0);
+}
 
 body {
 	width: 100%;
@@ -10,6 +29,11 @@ body {
 	overflow-x: hidden;
 	margin: auto;
 	font-family: "Michroma", sans-serif;
+}
+.App {
+	position: relative;
+	min-height: 100%;
+	min-height: 100vh;
 }
 
 .header {
@@ -26,13 +50,13 @@ body {
 	position: relative;
 	left: -10%;
 	color: rgb(0, 0, 0);
-	text-shadow: 5px 5px 20px #995d31;
+	text-shadow: 5px 5px 20px rgb(154, 41, 0);
 	text-align-last: center;
 	z-index: 3;
 }
 
 span {
-	text-shadow: 5px 5px 20px white;
+	text-shadow: 5px 5px 20px #ffffff;
 }
 
 .information {
@@ -41,7 +65,7 @@ span {
 	height: 30%;
 	position: absolute;
 	bottom: 0;
-	box-shadow: 0px 0px 30px 0px #410d0d;
+	box-shadow: 0px 0px 30px 0px rgb(255, 69, 0);
 	z-index: 2;
 }
 
@@ -50,7 +74,7 @@ span {
 	/* color: #492a17;
 	text-shadow: 5px 5px 20px #ffffff; */
 	color: black;
-	text-shadow: 5px 5px 20px #860606;
+	text-shadow: 5px 5px 20px #ffffff;
 	width: 50%;
 	text-align: justify;
 	position: relative;
@@ -64,11 +88,12 @@ span {
 	position: absolute;
 
 	background: url("https://images.unsplash.com/photo-1563162651-157fde763e85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+	/* background: url("https://preview.redd.it/rtud5ta06tq61.jpg?width=640&crop=smart&auto=webp&s=c3d0fdb34cd8426c80e8017257cf311c230c936a"); */
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position-y: 20%;
 	background-position: 10%;
-	box-shadow: 0px 0px 30px 0px #410d0d;
+	box-shadow: 0px 0px 30px 0px #ffffff;
 	z-index: 2;
 
 	animation: headerImage_appear 0.8s both;
@@ -89,7 +114,7 @@ span {
 	position: absolute;
 	bottom: 5%;
 	right: 0;
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(255, 69, 0, 0.2);
 	z-index: -1;
 	border-radius: 20px 0px 0px 0px;
 	z-index: 1;
@@ -99,22 +124,20 @@ span {
 	font-size: 150px;
 	font-family: "Megrim", cursive;
 	position: absolute;
-	color: rgba(81, 61, 46, .0);
+	color: rgba(81, 61, 46, 0);
 	text-shadow: 5px 5px 40px rgba(0, 0, 0, 0.8);
 	top: 0;
 	right: 5%;
 	z-index: 3;
 
-
 	animation: kwt 3s both infinite;
-
 }
 
 /* MENU */
 .line {
 	width: 30px;
 	height: 4px;
-	background: black;
+	background: rgb(187, 50, 0);
 	transition: 0.4s;
 }
 
@@ -140,7 +163,7 @@ span {
 .navButton {
 	width: 30px;
 	height: 30px;
-	position: absolute;
+	position: fixed;
 	top: 1%;
 	right: 1%;
 	z-index: 5;
@@ -165,18 +188,19 @@ span {
 	width: 40%;
 	height: 100%;
 	background: rgba(255, 255, 255);
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: -40%;
 	z-index: 4;
 	transition: 0.4s;
+	overflow: hidden;
 
 	/* display: none; */
 }
 
 .nav_active {
 	/* display: block !important; */
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0%;
 	transition: 0.4s;
@@ -210,7 +234,7 @@ span {
 	width: 0;
 	height: 1px;
 	background: #000;
-	transition: width 0.4s ease-in;
+	transition: width 0.3s ease-in;
 }
 
 .nav_menu a:hover {
@@ -234,4 +258,29 @@ span {
 	z-index: -1;
 
 	animation: kwt2 3s both infinite;
+}
+
+.about {
+	width: 100%;
+	position: absolute;
+	top: 100%;
+	text-align: justify;
+	display: grid;
+	grid-template-columns: 60% 40%;
+}
+
+.aboutBG {
+	background: url("../public/logo.png");
+	background-repeat: no-repeat;
+	background-position: 50%;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	justify-content: center;
+}
+.aboutInfo {
+	width: 80%;
+	margin: auto;
+	font-size: 21px;
 }
