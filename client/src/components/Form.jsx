@@ -90,7 +90,6 @@ const Form = () => {
 			participants,
 		};
 		setIsSubmitting(true);
-
 		const response = await fetch("/api/form", {
 			method: "POST",
 			headers: {
