@@ -1,69 +1,10 @@
+import Participant from "./Participant";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-const Participant = ({ participants, setParticipants, number }) => {
-	const [name, setName] = useState("");
-	const [surname, setSurname] = useState("");
-	const [email, setEmail] = useState("");
-
-	useEffect(() => {
-		setParticipants([
-			...participants,
-			{
-				id: number,
-				name: { name },
-				surname: { surname },
-				email: { email },
-			},
-		]);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		setParticipants((obj) =>
-			obj.map((oldData) =>
-				oldData.id === number
-					? {
-							id: number,
-							name: { name },
-							surname: { surname },
-							email: { email },
-					  }
-					: oldData
-			)
-		);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [name, surname, email]);
-
-	return (
-		<>
-			<input
-				type="text"
-				placeholder="Imię"
-				onChange={(e) => setName(e.target.value)}
-				value={name}
-				required
-			/>
-			<input
-				type="text"
-				placeholder="Nazwisko"
-				onChange={(e) => setSurname(e.target.value)}
-				value={surname}
-				required
-			/>
-			<input
-				type="email"
-				placeholder="E-mail"
-				onChange={(e) => setEmail(e.target.value)}
-				value={email}
-				required
-			/>
-		</>
-	);
-};
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const Form = () => {
+	console.log(process.env.REACT_APP_RECAPTCHA);
 	const [name, setName] = useState("");
 	const [surname, setSurname] = useState("");
 	const [school, setSchool] = useState("");
@@ -75,10 +16,15 @@ const Form = () => {
 	const [error, setError] = useState(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
+	// const reRef = useRef();
+
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// const token = await reRef.current.executeAsync();
+		// console.log(token);
 
 		const data = {
 			name,
@@ -88,6 +34,7 @@ const Form = () => {
 			email,
 			phone,
 			participants,
+			// token,
 		};
 		setIsSubmitting(true);
 		const response = await fetch("/api/form", {
@@ -174,6 +121,7 @@ const Form = () => {
 					<div className="uczestnicy">
 						{[...Array(participantsNumber)].map((item, index) => (
 							<Participant
+								key={index}
 								participants={participants}
 								setParticipants={setParticipants}
 								number={index + 1}
@@ -190,6 +138,7 @@ const Form = () => {
 				</div>
 				<input type="submit" value="Zarejestruj" disabled={isSubmitting} />
 			</form>
+			{/* <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA} ref={reRef} /> */}
 		</div>
 	);
 };
