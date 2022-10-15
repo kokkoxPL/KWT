@@ -10,8 +10,8 @@ import "./fontello/css/fontello.css";
 import Home from "./pages/Home";
 import Join from "./pages/Join";
 import Gallery from "./pages/Gallery";
-import FormSubmitted from "./pages/FormSubmitted";
 import Admin from "./pages/Admin";
+import Teapot from "./pages/Teapot";
 
 //COMPONENTS
 
@@ -30,9 +30,8 @@ function App() {
 						<Route path='/' element={<Home />} />
 						<Route path='/gallery' element={<Gallery />} />
 						<Route path='/join' element={<Join />} />
-						<Route path="/submitted" element={<FormSubmitted />} />
 						<Route path="/admin" element={<Admin />} />
-						{/* TODO: 418 page */}
+						<Route path="/*" element={<Teapot />} />
 					</Routes>
 					<Footer />
 				</div>

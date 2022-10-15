@@ -2,24 +2,23 @@ const { Router } = require("express");
 const router = Router();
 const Form = require("./formModel");
 
-const applicants = require("./temporary_applicants.json")
-
 router.post("/form", async (req, res) => {
   const data = req.body;
 
   const form = new Form(data);
   form.save()
-    .catch((err) => console.log(err));
+    .then(() => res.json({}))
+    .catch((err) => res.status(404).json(err));
 })
 
-router.get("/export", (req, res) => {
+router.get("/admin", (req, res) => {
   Form.find()
     .then((result) => res.json(result))
     .catch((err) => console.log(err))
 })
 
-router.get("/applicants", (req, res) => {
-  res.json(applicants)
+router.use((req, res) => {
+  res.status(418).json({error: "I'm a teapot"});
 })
 
 module.exports = router

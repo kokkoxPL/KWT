@@ -27,6 +27,10 @@ const formSchema = new Schema({
     type: Number,
     required: true
   },
+  type: {
+    type: String,
+    required: true
+  },
   participants: {
     type: Array,
     required: true

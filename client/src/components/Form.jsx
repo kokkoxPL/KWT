@@ -1,31 +1,31 @@
 import Participant from "./Participant";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Form = () => {
-	console.log(process.env.REACT_APP_RECAPTCHA);
-	const [name, setName] = useState("");
-	const [surname, setSurname] = useState("");
-	const [school, setSchool] = useState("");
-	const [schoolAddress, setSchoolAddress] = useState("");
-	const [email, setEmail] = useState("");
-	const [phone, setPhone] = useState("");
+	const [name, setName] = useState("Marek");
+	const [surname, setSurname] = useState("Kowal");
+	const [school, setSchool] = useState("zstio");
+	const [schoolAddress, setSchoolAddress] = useState("jarosław");
+	const [email, setEmail] = useState("mark@gmail.com");
+	const [phone, setPhone] = useState("987654321");
+	const [type, setType] = useState("Modelarstwo");
 	const [participants, setParticipants] = useState([]);
 	const [participantsNumber, setParticipantsNumber] = useState(1);
 	const [error, setError] = useState(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	// const reRef = useRef();
+	const reRef = useRef();
+
+	const change = () => {
+		console.log(reRef.current.getValue());
+	};
 
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		// const token = await reRef.current.executeAsync();
-		// console.log(token);
-
 		const data = {
 			name,
 			surname,
@@ -34,29 +34,26 @@ const Form = () => {
 			email,
 			phone,
 			participants,
-			// token,
 		};
-		setIsSubmitting(true);
-		const response = await fetch("/api/form", {
+		const api = "/api/form";
+		const body = {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(data),
-		});
+		};
 
-		if (response.status !== 200) {
-			setError("An unexpected error occured :(");
-		}
-
+		setIsSubmitting(true);
+		const response = await fetch(api, body);
 		const json = await response.json();
 
+		console.log(json);
 		if (!response.ok) {
 			setError(json.error);
 			console.log(error);
 		} else {
-			console.log(json);
-			navigate("/submitted");
+			navigate("/");
 		}
 
 		setIsSubmitting(false);
@@ -82,7 +79,11 @@ const Form = () => {
 						/>
 						<div className="label">
 							<label htmlFor="rodzaj">Rodzaj konkursu:</label>
-							<select id="rodzaj">
+							<select
+								id="rodzaj"
+								onChange={(e) => setType(e.target.value)}
+								value={type}
+							>
 								<option value="Modelarstwo">Modelarstwo</option>
 								<option value="Interdyscypliny">Interdyscypliny</option>
 								<option value="Praca_własna">Praca własna</option>
@@ -121,7 +122,7 @@ const Form = () => {
 					<div className="uczestnicy">
 						{[...Array(participantsNumber)].map((item, index) => (
 							<Participant
-								key={index}
+								key={index + 1}
 								participants={participants}
 								setParticipants={setParticipants}
 								number={index + 1}
@@ -138,7 +139,11 @@ const Form = () => {
 				</div>
 				<input type="submit" value="Zarejestruj" disabled={isSubmitting} />
 			</form>
-			{/* <ReCAPTCHA sitekey={process.env.REACT_APP_RECAPTCHA} ref={reRef} /> */}
+			<ReCAPTCHA
+				onChange={change}
+				sitekey={process.env.REACT_APP_RECAPTCHA}
+				ref={reRef}
+			/>
 		</div>
 	);
 };

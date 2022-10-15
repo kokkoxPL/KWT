@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 const Participant = ({ participants, setParticipants, number }) => {
-	const [name, setName] = useState("");
-	const [surname, setSurname] = useState("");
-	const [email, setEmail] = useState("");
+	const [name, setName] = useState("marek");
+	const [surname, setSurname] = useState("kowalski");
+	const [email, setEmail] = useState("marek@gmail.com");
 
 	useEffect(() => {
 		setParticipants([

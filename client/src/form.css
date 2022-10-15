@@ -8,7 +8,7 @@ textarea:focus {
 input {
     background: transparent;
     border: none;
-    border-bottom: 2px solid rgb(6, 127, 123);
+    border-bottom: 2px solid rgb(16, 49, 48);
     width: 400px;
     height: 50px;
     font-size: 15px;
@@ -22,7 +22,7 @@ input[type="submit"] {
     transform: translateX(-50%);
     margin-top: 40px;
     transition: .4s;
-    background: rgb(6, 127, 123);
+    background: rgb(16, 49, 48);
     color: white;
     border-radius: 40px;
     border: none;
@@ -36,7 +36,7 @@ input[type="submit"]:hover {
 textarea {
     width: 400px;
     height: 200px;
-    border: 2px solid rgb(6, 127, 123);
+    border: 2px solid rgb(16, 49, 48);
 }
 
 .inputs {
@@ -73,7 +73,7 @@ select {
     padding: 0 15px;
     font-size: 20px;
     border: none;
-    border-bottom: 2px solid rgb(6, 127, 123);
+    border-bottom: 2px solid rgb(16, 49, 48);
 }
 
 
