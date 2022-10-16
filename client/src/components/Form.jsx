@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const Form = () => {
-	const [name, setName] = useState("Marek");
-	const [surname, setSurname] = useState("Kowal");
-	const [school, setSchool] = useState("zstio");
-	const [schoolAddress, setSchoolAddress] = useState("jarosław");
-	const [email, setEmail] = useState("mark@gmail.com");
-	const [phone, setPhone] = useState("987654321");
-	const [type, setType] = useState("Modelarstwo");
+	const [name, setName] = useState("");
+	const [surname, setSurname] = useState("");
+	const [school, setSchool] = useState("");
+	const [schoolAddress, setSchoolAddress] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [type, setType] = useState("");
 	const [participants, setParticipants] = useState([]);
 	const [participantsNumber, setParticipantsNumber] = useState(1);
 	const [error, setError] = useState(null);
