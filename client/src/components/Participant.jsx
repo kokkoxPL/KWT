@@ -10,9 +10,9 @@ const Participant = ({ participants, setParticipants, number }) => {
 			...participants,
 			{
 				id: number,
-				name: { name },
-				surname: { surname },
-				email: { email },
+				name,
+				surname,
+				email,
 			},
 		]);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,9 +24,9 @@ const Participant = ({ participants, setParticipants, number }) => {
 				oldData.id === number
 					? {
 							id: number,
-							name: { name },
-							surname: { surname },
-							email: { email },
+							name,
+							surname,
+							email,
 					  }
 					: oldData
 			)

@@ -5,12 +5,12 @@ function ApplicantList() {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		const get = async () => {
-			const response = await fetch("/api/admin").then((res) => res.json());
-			setData(response);
-			console.log(response);
-		};
-		get();
+		fetch("/api/admin")
+			.then((res) => res.json())
+			.then((res) => {
+				setData(res);
+				console.table(res);
+			});
 	}, []);
 
 	// TODO: email may not be unique

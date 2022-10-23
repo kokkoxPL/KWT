@@ -10,22 +10,24 @@ const Form = () => {
 	const [schoolAddress, setSchoolAddress] = useState("");
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
-	const [type, setType] = useState("");
+	const [type, setType] = useState("Modelarstwo");
 	const [participants, setParticipants] = useState([]);
 	const [participantsNumber, setParticipantsNumber] = useState(1);
 	const [error, setError] = useState(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [captcha, setCaptcha] = useState("");
 
 	const reRef = useRef();
 
 	const change = () => {
-		console.log(reRef.current.getValue());
+		setCaptcha(reRef.current.getValue());
 	};
 
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		const data = {
 			name,
 			surname,
@@ -34,7 +36,9 @@ const Form = () => {
 			email,
 			phone,
 			participants,
+			captcha,
 		};
+
 		const api = "/api/form";
 		const body = {
 			method: "POST",
@@ -137,7 +141,11 @@ const Form = () => {
 						)}
 					</div>
 				</div>
-				<input type="submit" value="Zarejestruj" disabled={isSubmitting} />
+				<input
+					type="submit"
+					value="Zarejestruj"
+					disabled={!captcha || isSubmitting}
+				/>
 			</form>
 			<ReCAPTCHA
 				onChange={change}
