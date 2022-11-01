@@ -4,6 +4,23 @@ import { CSVLink } from "react-csv";
 function ApplicantList() {
 	const [data, setData] = useState([]);
 
+	const teacherHeader = [
+		{ label: "id", key: "_id" },
+		{ label: "imie", key: "name" },
+		{ label: "nazwisko", key: "surname" },
+		{ label: "szkola", key: "school" },
+		{ label: "adres_szkoly", key: "schoolAddress" },
+		{ label: "email", key: "email" },
+		{ label: "telefon", key: "phone" },
+	];
+
+	const studentHeader = [
+		{ label: "teacher_id", key: "_id" },
+		{ label: "imie", key: "participants.name" },
+		{ label: "nazwisko", key: "participants.surname" },
+		{ label: "email", key: "participants.email" },
+	];
+
 	useEffect(() => {
 		fetch("/api/admin")
 			.then((res) => res.json())
@@ -42,8 +59,12 @@ function ApplicantList() {
 					))}
 				</tbody>
 			</table>
-			<CSVLink data={data} filename={"Applicants.csv"}>
-				Export to CSV
+			<CSVLink headers={teacherHeader} data={data} filename={"Teacher.csv"}>
+				Teachers
+			</CSVLink>
+			<br />
+			<CSVLink headers={studentHeader} data={data} filename={"Student.csv"}>
+				Students
 			</CSVLink>
 			;
 		</>

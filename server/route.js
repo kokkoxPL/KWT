@@ -30,7 +30,7 @@ router.post("/form", (req, res) => {
 
 router.get("/admin", (req, res) => {
   Form.find()
-    .select("name surname school schoolAddress email phone participants -_id")
+    .select("name surname school schoolAddress email phone participants")
     .then((result) => res.json(result)
     )
     .catch((err) => console.log(err))
