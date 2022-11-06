@@ -3,6 +3,7 @@ import { CSVLink } from "react-csv";
 
 function ApplicantList() {
 	const [data, setData] = useState([]);
+	const [students, setStudent] = useState([]);
 
 	const teacherHeader = [
 		{ label: "id", key: "_id" },
@@ -12,22 +13,28 @@ function ApplicantList() {
 		{ label: "adres_szkoly", key: "schoolAddress" },
 		{ label: "email", key: "email" },
 		{ label: "telefon", key: "phone" },
+		{ label: "typ", key: "type" },
 	];
 
 	const studentHeader = [
-		{ label: "teacher_id", key: "_id" },
-		{ label: "imie", key: "participants.name" },
-		{ label: "nazwisko", key: "participants.surname" },
-		{ label: "email", key: "participants.email" },
+		{ label: "opiekun_id", key: "teacher_id" },
+		{ label: "imie", key: "name" },
+		{ label: "nazwisko", key: "surname" },
+		{ label: "email", key: "email" },
 	];
 
 	useEffect(() => {
-		fetch("/api/admin")
-			.then((res) => res.json())
-			.then((res) => {
-				setData(res);
-				console.table(res);
-			});
+		const getData = async () => {
+			const response = await fetch("/api/admin").then((res) => res.json());
+			setData(response);
+			response.forEach((e) =>
+				e.participants.forEach((i) =>
+					setStudent(() => [...students, { teacher_id: e._id, ...i }])
+				)
+			);
+		};
+		getData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// TODO: email may not be unique
@@ -55,6 +62,7 @@ function ApplicantList() {
 							<td>{data.schoolAddress}</td>
 							<td>{data.phone}</td>
 							<td>{data.email}</td>
+							<td>{data.type}</td>
 						</tr>
 					))}
 				</tbody>
@@ -63,7 +71,7 @@ function ApplicantList() {
 				Teachers
 			</CSVLink>
 			<br />
-			<CSVLink headers={studentHeader} data={data} filename={"Student.csv"}>
+			<CSVLink headers={studentHeader} data={students} filename={"Student.csv"}>
 				Students
 			</CSVLink>
 			;

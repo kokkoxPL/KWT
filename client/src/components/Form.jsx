@@ -35,6 +35,7 @@ const Form = () => {
 			schoolAddress,
 			email,
 			phone,
+			type,
 			participants,
 			captcha,
 		};
@@ -52,7 +53,6 @@ const Form = () => {
 		const response = await fetch(api, body);
 		const json = await response.json();
 
-		console.log(json);
 		if (!response.ok) {
 			setError(json.error);
 			console.log(error);
