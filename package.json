@@ -1,11 +1,12 @@
 {
 	"scripts": {
-		"build": "npm i && concurrently --kill-others-on-fail \"npm run build-client\" \"npm run build-server\"",
-		"build-client": "cd client && npm i",
-		"build-server": "cd server && npm i",
+		"install": "npm i && concurrently --kill-others-on-fail \"npm run install-client\" \"npm run install-server\"",
+		"install-client": "cd client && npm i",
+		"install-server": "cd server && npm i",
 		"start": "concurrently --kill-others-on-fail \"npm run start-client\" \"npm run start-server\"",
 		"dev": "concurrently --kill-others-on-fail \"npm run start-client\" \"npm run dev-server\"",
 		"start-client": "cd client && npm start",
+		"build-client": "cd client && npm build",
 		"start-server": "cd server && npm run start",
 		"dev-server": "cd server && npm run dev"
 	},
