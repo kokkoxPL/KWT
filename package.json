@@ -4,8 +4,10 @@
 		"build-client": "cd client && npm i",
 		"build-server": "cd server && npm i",
 		"start": "concurrently --kill-others-on-fail \"npm run start-client\" \"npm run start-server\"",
+		"dev": "concurrently --kill-others-on-fail \"npm run start-client\" \"npm run dev-server\"",
 		"start-client": "cd client && npm start",
-		"start-server": "cd server && npm run dev"
+		"start-server": "cd server && npm run start",
+		"dev-server": "cd server && npm run dev"
 	},
 	"devDependencies": {
 		"concurrently": "^7.4.0"
