@@ -7,8 +7,7 @@
 		"dev": "concurrently --kill-others-on-fail \"npm run start-client\" \"npm run dev-server\"",
 		"start-client": "cd client && npm start",
 		"start-server": "cd server && npm run start",
-		"dev-server": "cd server && npm run dev",
-		"render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+		"dev-server": "cd server && npm run dev"
 	},
 	"devDependencies": {
 		"concurrently": "^7.4.0"
