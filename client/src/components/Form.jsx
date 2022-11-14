@@ -16,14 +16,12 @@ const Form = () => {
 	const [error, setError] = useState(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [captcha, setCaptcha] = useState("");
-
 	const reRef = useRef();
+	const navigate = useNavigate();
 
 	const change = () => {
 		setCaptcha(reRef.current.getValue());
 	};
-
-	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -66,7 +64,7 @@ const Form = () => {
 	return (
 		<div className="form">
 			<form onSubmit={handleSubmit}>
-				<h1>Zarejestruj się</h1>
+				<h1>OPIEKUN-SZKOŁA</h1>
 				<div className="inputs">
 					<div className="school">
 						<input
@@ -120,9 +118,10 @@ const Form = () => {
 							value={phone}
 						/>
 					</div>
+				</div>
 
+				<div className="uczniowie">
 					<h1>UCZNIOWIE</h1>
-					<br />
 					<div className="uczestnicy">
 						{[...Array(participantsNumber)].map((item, index) => (
 							<Participant
@@ -134,9 +133,14 @@ const Form = () => {
 						))}
 						{participantsNumber < 5 && (
 							<div
+								className="uczestnik"
+								style={{ opacity: 0.4 }}
 								onClick={() => setParticipantsNumber(participantsNumber + 1)}
 							>
-								+
+								<h1>UCZEŃ {participantsNumber + 1}</h1>
+								<input type="text" placeholder="Imię" />
+								<input type="text" placeholder="Nazwisko" />
+								<input type="email" placeholder="E-mail" />
 							</div>
 						)}
 					</div>

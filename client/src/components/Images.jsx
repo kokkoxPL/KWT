@@ -11,6 +11,8 @@ const Images = ({ images }) => {
 							backgroundImage: `url(${image.img})`,
 							backgroundRepeat: "no-repeat",
 							backgroundSize: "cover",
+							// width: "100%",
+							// height: "100%",
 						}}
 					>
 						<div className="czorny"></div>

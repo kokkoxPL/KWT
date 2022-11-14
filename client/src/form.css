@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Megrim&display=swap");
 
+
 input:focus,
 textarea:focus {
     outline: none;
@@ -8,7 +9,7 @@ textarea:focus {
 input {
     background: transparent;
     border: none;
-    border-bottom: 2px solid rgb(16, 49, 48);
+    border-bottom: 2px solid #293021;
     width: 400px;
     height: 50px;
     font-size: 15px;
@@ -17,12 +18,9 @@ input {
 input[type="submit"] {
     padding: 10px 30px;
     font-size: 20px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
     margin-top: 40px;
     transition: .4s;
-    background: rgb(16, 49, 48);
+    background: #114133;
     color: white;
     border-radius: 40px;
     border: none;
@@ -33,16 +31,9 @@ input[type="submit"]:hover {
     letter-spacing: 1px;
 }
 
-textarea {
-    width: 400px;
-    height: 200px;
-    border: 2px solid rgb(16, 49, 48);
-}
-
 .inputs {
     display: grid;
     grid-template-columns: repeat(2, 45%);
-    grid-template-rows: repeat(5);
     gap: 20px;
     margin: auto;
     justify-content: center;
@@ -52,16 +43,51 @@ textarea {
 .school {
     display: grid;
     gap: 20px;
+    justify-content: center;
+}
+
+.school input{
+    margin: auto;
+}
+
+select{
+    -moz-appearance: none;
+    background-color: aliceblue;
+   border: none;
+   font-family: "Michroma", sans-serif;
+}
+
+select option{
+    background: #293021;
+    color: white;
 }
 
 .main {
-    width: 80%;
-    height: 105%;
-    position: absolute;
-    top: 0;
-    left: 10%;
+    width: 100%;
+    min-height: 180vh;
+    height: fit-content;
     display: grid;
-    grid-template-columns: 35% 64%;
+    grid-template-columns: 100%;
+    grid-template-rows: 25% 75%;
+    text-align: center;
+    justify-content: center;
+}
+
+.background {
+    height: 100%;
+    width: 100%;
+    background: #114133;
+    color: white;
+    align-items: center;
+    margin: auto;
+}
+
+.background h1 {
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 70px;
 }
 
 .label {
@@ -73,42 +99,133 @@ select {
     padding: 0 15px;
     font-size: 20px;
     border: none;
-    border-bottom: 2px solid rgb(16, 49, 48);
+    border-bottom: 2px solid #293021;
 }
 
-
-.background {
+.form {
     width: 100%;
-    height: 100%;
-    background: rgb(16, 49, 48);
-    overflow: hidden;
-}
-
-.background h1 {
-    writing-mode: vertical-lr;
-    font-size: 400px;
-    font-family: "Megrim", cursive;
-    position: relative;
-    left: -40%;
-    top: 15%;
-    animation: kwt 3s both infinite;
+    height: fit-content;
+    border-radius: 40px 40px 0px 0px;
+    margin-top: -50px;
+    padding-top: 50px;
+    background: white;
+    box-shadow: 0px 0px 20px 0px white;
 }
 
 h1 {
     text-align: center;
+    margin: auto;
 }
 
 .uczestnicy {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 20px;
-    margin-left: 30px;
+    grid-template-columns: repeat(3, 350px);
+    gap: 50px;
+    justify-content: center;
+}
+
+.uczestnicy input{
+    text-align: center;
 }
 
 .uczestnicy input[type="text"] {
-    width: 200px;
+    width: 300px;
 }
 
 .uczestnicy input[type="email"] {
     width: 300px;
+}
+
+.uczniowie{
+    margin-top: 70px;
+}
+/*.uczniowie h1{
+    margin-bottom: 40px;
+} */
+
+
+@media screen and (max-width: 1500px) {
+    .main {
+        min-height: 180vh;
+    }
+    @media screen and (max-height: 900px){
+        .main{
+            min-height: 200vh;
+        }
+    }
+}
+
+@media screen and (max-width: 1350px) {
+
+    .uczestnicy{
+        gap: 0;
+    }
+
+    .background h1{
+        font-size: 50px;
+    }
+
+}
+
+@media screen and (max-width: 1050px) {
+    .uczestnicy {
+        display: grid;
+        grid-template-columns: repeat(2, 350px);
+        gap: 20px;
+    }
+    .uczestnicy div{
+        display: flex;
+        flex-direction: column;
+    }
+    @media screen and (max-height: 900px){
+        .main{
+            min-height: 250vh;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .main {
+        min-height: 400vh;
+    }
+    .uczestnicy {
+        display: grid;
+        grid-template-columns: 90%;
+        row-gap: 20px;
+    }
+
+    .uczestnik{
+        justify-content: center;
+        margin: auto;
+    }
+    .uczestnicy input[type="text"]{
+        width: 400px;
+    }
+    .inputs{
+        grid-template-columns:90%;
+        justify-content: center;
+    }
+    .teacherData {
+        grid-template-columns: repeat(1, 100%);
+        grid-template-rows: repeat(2, auto);
+    }
+    .part {
+        border-bottom: 1px solid rgb(16, 49, 48);
+        padding-bottom: 10px;
+        width: 100%;
+    }
+
+    .inputs .input {
+        justify-content: center;
+        margin: auto;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 450px){
+    @media screen and (max-height: 750px){
+        .main{
+            min-height: 400vh;
+        }
+    }
 }

@@ -35,7 +35,7 @@ const Navbar = () => {
 				</div>
 				<ul>
 					<li onClick={headerScroll}>
-						<Link to={"/"}>STRONA GŁÓWNA</Link>
+						<Link to={"/#header"}>STRONA GŁÓWNA</Link>
 					</li>
 					<li onClick={aboutScroll}>
 						<Link to={"/#about"}>INFORMACJE</Link>

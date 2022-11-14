@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
 	return (
@@ -20,14 +19,6 @@ const Footer = () => {
 				<a href="https://www.instagram.com/zstio.fm/">
 					<i className="icon-instagram icon" />
 				</a>
-			</div>
-			<div className="border"></div>
-			<div className="sign">
-				<Link to={"/join"}>
-					<div className="button">
-						<p>Dołącz</p>
-					</div>
-				</Link>
 			</div>
 		</div>
 	);

@@ -4,7 +4,7 @@ const Join = () => {
   return (
     <div className="main">
       <div className="background">
-        <h1>KWT</h1>
+        <h1>ZAREJESTRUJ SIĘ</h1>
       </div>
       <Form />
     </div>

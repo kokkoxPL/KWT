@@ -35,12 +35,14 @@ const Participant = ({ participants, setParticipants, number }) => {
 	}, [name, surname, email]);
 
 	return (
-		<>
+		<div className="uczestnik" key={number}>
+			<h1>UCZEŃ {number}</h1>
 			<input
 				type="text"
 				placeholder="Imię"
 				onChange={(e) => setName(e.target.value)}
 				value={name}
+				autoFocus
 				required
 			/>
 			<input
@@ -57,7 +59,7 @@ const Participant = ({ participants, setParticipants, number }) => {
 				value={email}
 				required
 			/>
-		</>
+		</div>
 	);
 };
 

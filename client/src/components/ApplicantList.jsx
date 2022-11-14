@@ -37,7 +37,6 @@ function ApplicantList() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// TODO: email may not be unique
 	return (
 		<>
 			<table>
