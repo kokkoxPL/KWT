@@ -13,7 +13,7 @@ const Form = () => {
 	const [type, setType] = useState("Modelarstwo");
 	const [participants, setParticipants] = useState([]);
 	const [participantsNumber, setParticipantsNumber] = useState(1);
-	const [error, setError] = useState(null);
+	const [errorFields, setErrorFields] = useState([]);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [captcha, setCaptcha] = useState("");
 	const reRef = useRef();
@@ -52,8 +52,8 @@ const Form = () => {
 		const json = await response.json();
 
 		if (!response.ok) {
-			setError(json.error);
-			console.log(error);
+			console.log(json);
+			setErrorFields(json.errorFields);
 		} else {
 			navigate("/");
 		}
@@ -72,12 +72,16 @@ const Form = () => {
 							placeholder="Szkoła"
 							onChange={(e) => setSchool(e.target.value)}
 							value={school}
+							className={errorFields.includes("school") ? "error" : ""}
+							required
 						/>
 						<input
 							type="text"
 							placeholder="Adres szkoły"
 							onChange={(e) => setSchoolAddress(e.target.value)}
 							value={schoolAddress}
+							className={errorFields.includes("schoolAddress") ? "error" : ""}
+							required
 						/>
 						<div className="label">
 							<label htmlFor="rodzaj">Rodzaj konkursu:</label>
@@ -85,6 +89,8 @@ const Form = () => {
 								id="rodzaj"
 								onChange={(e) => setType(e.target.value)}
 								value={type}
+								className={errorFields.includes("") ? "error" : ""}
+								required
 							>
 								<option value="Modelarstwo">Modelarstwo</option>
 								<option value="Interdyscypliny">Interdyscypliny</option>
@@ -98,37 +104,46 @@ const Form = () => {
 							placeholder="Imię opiekuna"
 							onChange={(e) => setName(e.target.value)}
 							value={name}
+							className={errorFields.includes("name") ? "error" : ""}
+							required
 						/>
 						<input
 							type="text"
 							placeholder="Nazwisko opiekuna"
 							onChange={(e) => setSurname(e.target.value)}
 							value={surname}
+							className={errorFields.includes("surname") ? "error" : ""}
+							required
 						/>
 						<input
 							type="email"
 							placeholder="E-mail"
 							onChange={(e) => setEmail(e.target.value)}
 							value={email}
+							className={errorFields.includes("email") ? "error" : ""}
+							required
 						/>
 						<input
 							type="tel"
 							placeholder="Numer telefonu"
 							onChange={(e) => setPhone(e.target.value)}
 							value={phone}
+							className={errorFields.includes("phone") ? "error" : ""}
+							required
 						/>
 					</div>
 				</div>
 
 				<div className="uczniowie">
 					<h1>UCZNIOWIE</h1>
+					<hr className="solid" />
 					<div className="uczestnicy">
 						{[...Array(participantsNumber)].map((item, index) => (
 							<Participant
 								key={index + 1}
 								participants={participants}
 								setParticipants={setParticipants}
-								number={index + 1}
+								id={index + 1}
 							/>
 						))}
 						{participantsNumber < 5 && (
@@ -145,17 +160,18 @@ const Form = () => {
 						)}
 					</div>
 				</div>
+				<ReCAPTCHA
+					className="captcha"
+					onChange={change}
+					sitekey={process.env.REACT_APP_RECAPTCHA}
+					ref={reRef}
+				/>
 				<input
 					type="submit"
 					value="Zarejestruj"
 					disabled={!captcha || isSubmitting}
 				/>
 			</form>
-			<ReCAPTCHA
-				onChange={change}
-				sitekey={process.env.REACT_APP_RECAPTCHA}
-				ref={reRef}
-			/>
 		</div>
 	);
 };

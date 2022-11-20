@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = Router();
 const Form = require("./formModel");
+var validator = require('validator');
+
 
 router.post("/form", (req, res) => {
   const { captcha, ...data } = req.body;
@@ -22,10 +24,29 @@ router.post("/form", (req, res) => {
     })
     .catch((err) => res.status(500).json(err))
 
+  const errorFields = [];
+
+  for (const key in data) {
+    if (!data[key]) {
+      errorFields.push(key.toString());
+    }
+  }
+
+  if (!validator.isEmail(data.email)) {
+    errorFields.push("email");
+  }
+
+  if (data.phone.toString().length == 9) {
+    errorFields.push("phone");
+  }
+
   const form = new Form(data);
   form.save()
     .then(() => res.json({}))
-    .catch((err) => res.status(404).json(err));
+    .catch((error) => {
+      console.log(error.message)
+      res.status(404).json({ error: error.message, errorFields })
+    });
 })
 
 router.get("/admin", (req, res) => {
